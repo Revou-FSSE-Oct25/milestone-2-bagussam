@@ -1,0 +1,18 @@
+/* ... existing code ... */
+
+.hq-container { text-align: center; animation: pulse-glow 3s infinite alternate; }
+.hq-logo-big {
+    font-size: 10rem; display: inline-block;
+    background: linear-gradient(135deg, var(--fun-pink), var(--fun-yellow));
+    /* ADDED standard property below to fix the warning */
+    background-clip: text;
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 30px var(--fun-pink)); margin-bottom: 0; line-height: 1;
+}
+@keyframes pulse-glow {
+    0% { transform: scale(1); filter: drop-shadow(0 0 20px var(--fun-pink)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 50px var(--fun-purple)); }
+}
+
+/* ... existing code ... */
