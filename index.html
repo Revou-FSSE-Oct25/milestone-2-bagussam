@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArcadeFun | by RevoFun Indonesia</title>
+    <style>
+        /* --- GLOBAL VARIABLES --- */
+        :root {
+            --bg-color: #0B132B;
+            --accent-color: #00D4FF; /* Cyan */
+            --fun-pink: #FF0055;     /* Hot Pink */
+            --fun-yellow: #FFDD00;   /* Electric Yellow */
+            --fun-purple: #9D00FF;   /* Neon Purple */
+            --text-color: #FFFFFF;
+            --font-main: 'Montserrat', 'Segoe UI', sans-serif;
+            --glass-bg: rgba(0, 0, 0, 0.85);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0; padding: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: white; transition: 0.3s; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        html { scroll-behavior: smooth; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 19, 43, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--fun-purple);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-style: italic;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px var(--fun-pink);
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links li a {
+            font-size: 0.9rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .nav-links li a:hover { color: var(--fun-yellow); text-shadow: 0 0 10px var(--fun-yellow); }
+
+        /* --- 1. HOME HERO --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 50px;
+            background: linear-gradient(rgba(11, 19, 43, 0.4), rgba(11, 19, 43, 0.7)), 
+                        url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?q=80&w=2831&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .hero-content { max-width: 800px; position: relative; z-index: 2; }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px var(--fun-purple);
+        }
+
+        .hero h1 span { color: transparent; -webkit-text-stroke: 2px var(--accent-color); }
+
+        .btn-main {
+            display: inline-block;
+            padding: 15px 50px;
+            border: none;
+            background: var(--fun-pink);
+            color: white;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0 100%, 0 20%);
+        }
+
+        .btn-main:hover {
+            transform: scale(1.05);
+            background: var(--fun-yellow);
+            color: black;
+            box-shadow: 0 0 30px var(--fun-yellow);
+        }
+
+        /* --- UTILITY --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        .hidden { display: none !important; }
+        .section-view { min-height: 100vh; padding-top: 80px; position: relative; }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            text-align: center;
+            color: white;
+            text-shadow: 3px 3px 0px var(--fun-purple);
+        }
+
+        /* --- 2. ABOUT SECTION --- */
+        #about-view {
+            background: linear-gradient(rgba(11,19,43,0.85), rgba(11,19,43,0.85)),
+                        url('https://tse2.mm.bing.net/th/id/OIP.jC9zrWonX1Y897GUDEvy_QHaEo?pid=Api&P=0&h=180');
+            background-size: cover;
+            background-position: center;
+            display: flex; align-items: center;
+        }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-text { background: rgba(0,0,0,0.7); padding: 30px; border-left: 5px solid var(--fun-yellow); border-radius: 0 20px 20px 0; }
+
+        .hq-container { text-align: center; animation: pulse-glow 3s infinite alternate; }
+        .hq-logo-big {
+            font-size: 10rem; display: inline-block;
+            background: linear-gradient(135deg, var(--fun-pink), var(--fun-yellow));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px var(--fun-pink)); margin-bottom: 0; line-height: 1;
+        }
+        @keyframes pulse-glow {
+            0% { transform: scale(1); filter: drop-shadow(0 0 20px var(--fun-pink)); }
+            100% { transform: scale(1.05); filter: drop-shadow(0 0 50px var(--fun-purple)); }
+        }
+
+        /* --- 3. GAMES GRID --- */
+        #games-view { 
+            background: linear-gradient(rgba(11,19,43,0.7), rgba(11,19,43,0.9)),
+                        url('https://www.roadtovr.com/wp-content/uploads/2016/08/new-retro-arcade-neon-launch-8.jpg');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+        .game-card {
+            background: rgba(21, 21, 37, 0.9); padding: 40px 30px; border-radius: 20px; border: 2px solid #555;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(5px);
+        }
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02); border-color: var(--fun-yellow);
+            box-shadow: 0 0 30px rgba(255, 221, 0, 0.5); background: rgba(30, 30, 50, 0.95);
+        }
+
+        .game-card h3 { font-size: 2rem; margin-bottom: 15px; color: var(--accent-color); font-weight: 800; }
+        
+        .btn-play {
+            background: var(--fun-purple); color: white; padding: 12px 30px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer; transition: 0.2s; margin-top: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .btn-play:hover { background: var(--fun-pink); transform: scale(1.1); box-shadow: 0 0 20px var(--fun-pink); }
+
+        /* --- 4. CONTACT SECTION --- */
+        #contact-view {
+            background: url('https://tse4.mm.bing.net/th/id/OIP.PRrwe70GQaWiGSErZT4YCAHaEE?pid=Api&P=0&h=180') no-repeat center center;
+            background-size: cover; display: flex; align-items: center; justify-content: center;
+        }
+        #contact-view::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 1; }
+
+        .contact-box-centered {
+            position: relative; z-index: 2; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
+            padding: 60px; border-radius: 30px; border: 3px solid var(--accent-color); box-shadow: 0 0 80px rgba(0, 212, 255, 0.4);
+            width: 100%; max-width: 600px; text-align: center;
+        }
+
+        .contact-input {
+            width: 100%; padding: 20px; margin-bottom: 20px; background: rgba(255,255,255,0.1);
+            border: 2px solid #444; color: white; border-radius: 10px; font-family: inherit; font-size: 1rem; transition: 0.3s;
+        }
+        .contact-input:focus { outline: none; border-color: var(--fun-pink); background: rgba(0,0,0,0.8); box-shadow: 0 0 20px rgba(255, 0, 85, 0.3); }
+
+        /* --- UPDATED GAME CONSOLE --- */
+        .game-console-box {
+            /* Metallic Chassis with Carbon Fiber Hint */
+            background: 
+                radial-gradient(black 15%, transparent 16%) 0 0,
+                radial-gradient(black 15%, transparent 16%) 8px 8px,
+                radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+                radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+            background-color: #282828;
+            background-size: 16px 16px;
+            
+            border: 8px solid #333;
+            border-bottom: 12px solid #222;
+            border-radius: 40px;
+            padding: 50px 30px 30px 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            
+            /* Multi-layer Shadow & Glow */
+            box-shadow: 
+                inset 0 0 40px rgba(0,0,0,1), 
+                0 0 0 2px #555,
+                0 0 0 8px #111,
+                0 0 80px rgba(0, 212, 255, 0.2);
+            
+            animation: border-pulse 4s infinite alternate;
+        }
+
+        @keyframes border-pulse {
+            0% { border-color: #333; box-shadow: inset 0 0 40px black, 0 0 0 8px #111, 0 0 60px rgba(157, 0, 255, 0.2); }
+            100% { border-color: #444; box-shadow: inset 0 0 40px black, 0 0 0 8px #111, 0 0 80px rgba(157, 0, 255, 0.5); }
+        }
+
+        /* Rivets/Screws */
+        .game-console-box::after {
+            content: "";
+            position: absolute;
+            top: 15px; left: 15px;
+            width: 15px; height: 15px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #888, #222);
+            box-shadow: 
+                inset 1px 1px 2px black,
+                calc(100% - 30px) 0 0 linear-gradient(135deg, #888, #222), /* Top Right */
+                0 calc(100% - 30px) 0 linear-gradient(135deg, #888, #222), /* Bottom Left */
+                calc(100% - 30px) calc(100% - 30px) 0 linear-gradient(135deg, #888, #222); /* Bottom Right */
+        }
+
+        /* Top Vents */
+        .game-console-box::before {
+            content: "";
+            position: absolute;
+            top: 20px; left: 50%; transform: translateX(-50%);
+            width: 150px; height: 12px;
+            background: repeating-linear-gradient(90deg, #111, #111 4px, #444 4px, #444 6px);
+            border-radius: 4px;
+            border: 1px solid #000;
+        }
+
+        /* --- UPDATED GAME WRAPPERS --- */
+
+        .game-wrapper {
+            padding: 40px; border-radius: 20px; text-align: center; min-height: 450px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            position: relative; overflow: hidden;
+            /* Inner Bezel */
+            border: 6px solid #111;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* 1. GUESSING GAME (Cyber Blueprint Theme) */
+        #game-guessing {
+            /* Deep Cyber-Teal Gradient */
+            background: 
+                linear-gradient(rgba(0, 43, 54, 0.9), rgba(0, 77, 64, 0.9)),
+                repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(0, 212, 255, 0.1) 20px),
+                repeating-linear-gradient(90deg, transparent, transparent 19px, rgba(0, 212, 255, 0.1) 20px);
+            background-color: #002B36;
+            border-color: #004D40;
+        }
+        #game-guessing h2 { color: #00D4FF; background: rgba(0,0,0,0.5); padding: 5px 15px; border: 1px solid #00D4FF; text-shadow: 0 0 10px #00D4FF; font-family: 'Courier New', monospace; letter-spacing: 2px; }
+        
+        .number-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.2;
+            font-family: monospace; font-size: 1.5rem; color: #00D4FF; overflow: hidden;
+        }
+        @keyframes float-nums { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+        .moving-nums { animation: float-nums 20s linear infinite; }
+        
+        .cyber-input {
+            background: rgba(0, 20, 20, 0.8); border: 2px solid #00D4FF; color: #00D4FF; font-family: monospace;
+            font-size: 2rem; width: 140px; padding: 10px; text-align: center; box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+        }
+        .cyber-btn {
+            background: #004D40; border: 1px solid #00D4FF; color: #00D4FF; font-family: monospace;
+            padding: 15px 30px; cursor: pointer; transition: 0.2s; margin-left: 10px; font-weight: bold;
+            text-transform: uppercase;
+        }
+        .cyber-btn:hover { background: #00D4FF; color: #000; box-shadow: 0 0 20px #00D4FF; }
+
+        /* 2. RPS GAME (Synthwave Sunset Theme) */
+        #game-rps {
+            /* Vivid Purple/Pink Retro Gradient */
+            background: linear-gradient(180deg, #4A148C 0%, #880E4F 50%, #C2185B 100%);
+            border-color: #F50057;
+        }
+        #game-rps h2 { 
+            color: #FFEB3B; font-style: italic; text-transform: uppercase; font-size: 3rem;
+            text-shadow: 3px 3px 0 #C2185B; z-index: 10;
+        }
+        .rps-arena { display: flex; gap: 30px; margin: 30px 0; z-index: 10; }
+        .rps-btn {
+            width: 110px; height: 110px; border-radius: 15px; border: 3px solid rgba(255,255,255,0.8); cursor: pointer;
+            font-size: 3.5rem; transition: 0.2s; background: rgba(255,255,255,0.1); backdrop-filter: blur(5px);
+        }
+        .rps-btn:hover { transform: translateY(-10px) scale(1.1); background: rgba(255,255,255,0.2); }
+        
+        .vs-text { 
+            font-size: 2.5rem; font-weight: 900; color: white; 
+            text-shadow: 0 0 10px #FF4081; z-index: 10; 
+            background: rgba(0,0,0,0.3); padding: 5px 20px; border-radius: 10px;
+        }
+
+        /* 3. CLICKER GAME (Reactor Core Theme) */
+        #game-clicker {
+            /* Electric Blue Plasma Gradient */
+            background: radial-gradient(circle at center, #304FFE 0%, #1A237E 60%, #000051 100%);
+            border-color: #536DFE;
+        }
+        #game-clicker h2 { 
+            color: #fff; text-transform: uppercase; letter-spacing: 5px; 
+            text-shadow: 0 0 20px #304FFE; background: rgba(0,0,0,0.3); padding: 5px 20px; border: 1px solid #536DFE;
+        }
+        
+        .clicker-btn {
+            width: 160px; height: 160px; border-radius: 50%; border: 4px solid #fff;
+            background: radial-gradient(circle, #536DFE, #000051);
+            font-size: 1.8rem; font-weight: 900; color: white; cursor: pointer;
+            box-shadow: 0 0 40px #304FFE; animation: pulse-btn 0.6s infinite alternate;
+            text-shadow: 0 0 10px #fff;
+        }
+        @keyframes pulse-btn { 
+            0% { transform: scale(1); box-shadow: 0 0 30px #304FFE; border-color: #fff; } 
+            100% { transform: scale(1.05); box-shadow: 0 0 60px #536DFE; border-color: #8C9EFF; } 
+        }
+        .clicker-btn:active { transform: scale(0.95); background: #fff; color: #304FFE; }
+
+        /* --- FOOTER --- */
+        footer { background: #050a18; padding: 20px; text-align: center; border-top: 1px solid #333; }
+        footer p { color: #666; font-size: 0.8rem; margin: 0; }
+        @media(max-width: 768px) { .about-grid { grid-template-columns: 1fr; text-align: center; } }
+    </style>
+</head>
+<body>
+
+    <!-- === LOADER === -->
+    <div id="loader-overlay" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:black; z-index:2000; color:var(--accent-color); display:flex; justify-content:center; align-items:center; font-size:2rem; font-family:monospace;">
+        LOADING GAME CARTRIDGE...
+    </div>
+
+    <!-- === NAV === -->
+    <nav>
+        <div class="logo">ArcadeFun<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showSection('home-view')">Home</a></li>
+            <li><a href="#" onclick="showSection('about-view')">About</a></li>
+            <li><a href="#" onclick="showSection('games-view')">Games</a></li>
+            <li><a href="#" onclick="showSection('contact-view')">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- 1. HERO -->
+    <div id="home-view" class="section-view hero">
+        <div class="hero-content">
+            <h1>Level Up<br><span>Your Boredom</span></h1>
+            <p style="font-size: 1.5rem; color: #eee; margin-bottom: 30px; font-weight: 500;">
+                Next Gen Browser Arcade. Instant Fun. No Downloads.
+            </p>
+            <button class="btn-main" onclick="showSection('games-view')">Start Playing</button>
+        </div>
+    </div>
+
+    <!-- 2. ABOUT -->
+    <div id="about-view" class="section-view">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title" style="text-align: left; font-size: 2.5rem;">Who We Are</h2>
+                    <p style="color: #ddd; font-size: 1.1rem; margin-bottom: 20px;">
+                        <strong>RevoFun</strong> is a collective of developers based in Surabaya. We build digital playgrounds.
+                    </p>
+                    <p style="color: #ddd;">
+                        Our mission is to bring the nostalgic joy of the arcade era into the modern web browser.
+                    </p>
+                </div>
+                <div class="hq-container">
+                    <div class="hq-logo-big">👾</div>
+                    <h3 style="color: var(--fun-yellow); font-size: 2rem; margin: 0; text-transform: uppercase;">RevoFun HQ</h3>
+                    <p style="color: white; opacity: 0.8; font-size: 1.2rem;">Central Server Node</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GAMES -->
+    <div id="games-view" class="section-view">
+        <div class="container">
+            <h2 class="section-title" style="color: white; -webkit-text-stroke: 1px var(--accent-color);">Select Cartridge</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>Number Guessing</h3>
+                    <p style="color:#aaa">Hack the mainframe.</p>
+                    <button class="btn-play" onclick="loadGame('guessing')">LOAD GAME</button>
+                </div>
+                <div class="game-card">
+                    <h3>Rock Paper Scissors</h3>
+                    <p style="color:#aaa">The ultimate arena.</p>
+                    <button class="btn-play" onclick="loadGame('rps')">LOAD GAME</button>
+                </div>
+                <div class="game-card">
+                    <h3>Clicker Blitz</h3>
+                    <p style="color:#aaa">High voltage speed.</p>
+                    <button class="btn-play" onclick="loadGame('clicker')">LOAD GAME</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. CONTACT -->
+    <div id="contact-view" class="section-view">
+        <div class="contact-box-centered">
+            <h2>Get In Touch</h2>
+            <p style="color: #ccc; margin-bottom: 30px;">Send a signal to the mothership.</p>
+            <input type="text" id="cName" class="contact-input" placeholder="Codename">
+            <input type="text" id="cMsg" class="contact-input" placeholder="Transmission Message">
+            <button class="btn-main" style="width: 100%; margin-top: 0;" onclick="sendMsg()">Transmit</button>
+            <div id="msgFeedback" style="margin-top: 15px; font-weight: bold; color: var(--fun-yellow);"></div>
+        </div>
+    </div>
+
+    <!-- GAME CONSOLE -->
+    <div id="active-game-view" class="section-view hidden" style="background: black;">
+        <div class="container">
+            <button onclick="showSection('games-view')" style="background:#333; color:white; border:none; padding:10px 20px; border-radius:5px; margin-bottom:20px; cursor:pointer;">&larr; EJECT CARTRIDGE</button>
+            
+            <div class="game-console-box">
+                <!-- GUESSING (Cyber Vault) -->
+                <div id="game-guessing" class="game-wrapper hidden">
+                    <div class="number-bg moving-nums">
+                        0101 42 99 12 55 1010 33 88 11 00 23 45 67 89 10 32 54 76 98 12<br>
+                        99 12 55 10 33 88 11 00 23 45 67 89 10 32 54 76 98 12 01 01<br>
+                        12 55 10 33 88 11 00 23 45 67 89 10 32 54 76 98 12 01 01 42<br>
+                        55 10 33 88 11 00 23 45 67 89 10 32 54 76 98 12 01 01 42 99
+                    </div>
+                    <div style="position:relative; z-index:2;">
+                        <h2>SYSTEM HACK</h2>
+                        <p style="color:#00D4FF; margin-bottom: 20px;">Decipher code (1-100)</p>
+                        <div class="game-ui">
+                            <input type="number" id="gIn" class="cyber-input"> 
+                            <button class="cyber-btn" id="gBtn">ENTER</button>
+                        </div>
+                        <div id="gRes" style="margin-top:20px; color:#00D4FF; font-family: monospace; font-size:1.5rem; text-shadow: 0 0 5px #00D4FF;">STATUS: LOCKED</div>
+                    </div>
+                </div>
+
+                <!-- RPS (Neon Arena) -->
+                <div id="game-rps" class="game-wrapper hidden">
+                    <h2>BATTLE ARENA</h2>
+                    <div class="rps-arena">
+                        <button class="rps-btn rock" onclick="playRPS('rock')">✊</button>
+                        <button class="rps-btn paper" onclick="playRPS('paper')">✋</button>
+                        <button class="rps-btn scissors" onclick="playRPS('scissors')">✌️</button>
+                    </div>
+                    <div id="rRes" class="vs-text">CHOOSE FIGHTER</div>
+                </div>
+
+                <!-- CLICKER (Hazard Industrial) -->
+                <div id="game-clicker" class="game-wrapper hidden">
+                    <h2>CLICKER BLITZ</h2>
+                    <h3 id="cTime" style="color:#fff; font-size:4rem; margin:10px 0; text-shadow:0 0 20px #536DFE; background:rgba(0,0,0,0.2); padding: 0 20px; border-radius:10px;">10</h3>
+                    <button class="clicker-btn" id="cBtn">⚡ BLITZ ⚡</button>
+                    <div id="cRes" style="color:white; margin-top:20px; font-size:1.5rem; background:rgba(0,0,0,0.5); padding:5px 15px; border:1px solid #536DFE;">VOLTAGE: <span id="cScore" style="color:#536DFE">0</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 RevoFun HQ. Surabaya.</p>
+    </footer>
+
+    <script>
+        // --- NAV & ROUTING ---
+        function showSection(id) {
+            document.querySelectorAll('.section-view').forEach(el => el.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+            window.scrollTo(0,0);
+        }
+
+        function loadGame(game) {
+            document.getElementById('loader-overlay').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('loader-overlay').classList.add('hidden');
+                showSection('active-game-view');
+                document.querySelectorAll('.game-wrapper').forEach(el => el.classList.add('hidden'));
+                document.getElementById('game-'+game).classList.remove('hidden');
+                if(game==='guessing') initGuess();
+                if(game==='rps') initRPS();
+                if(game==='clicker') initClick();
+            }, 1000);
+        }
+
+        function sendMsg() {
+            let n = document.getElementById('cName').value;
+            if(n) document.getElementById('msgFeedback').innerText = "Signal Received, " + n + "!";
+            else document.getElementById('msgFeedback').innerText = "Identify yourself!";
+        }
+
+        // --- GAME LOGIC ---
+        // Guessing
+        let gT, gAtt;
+        function initGuess(){ 
+            gT=Math.floor(Math.random()*100)+1; gAtt=5; 
+            document.getElementById('gRes').innerText="Attempts: 5"; 
+            document.getElementById('gIn').value = "";
+        }
+        document.getElementById('gBtn').onclick = () => {
+            let v = Number(document.getElementById('gIn').value);
+            gAtt--;
+            if(v===gT) document.getElementById('gRes').innerText="ACCESS GRANTED";
+            else if(gAtt<=0) document.getElementById('gRes').innerText="SYSTEM LOCKDOWN: "+gT;
+            else document.getElementById('gRes').innerText = (v>gT?"TOO HIGH":"TOO LOW") + " | " + gAtt;
+        };
+
+        // RPS
+        function initRPS(){ document.getElementById('rRes').innerText="CHOOSE FIGHTER"; }
+        function playRPS(p){
+            let c=['rock','paper','scissors'][Math.floor(Math.random()*3)];
+            let r="DRAW";
+            if((p=='rock'&&c=='scissors')||(p=='paper'&&c=='rock')||(p=='scissors'&&c=='paper')) r="YOU WIN";
+            else if(p!==c) r="YOU LOSE";
+            
+            // Visual feedback
+            document.getElementById('rRes').innerHTML = `<span style="color:${getColor(p)}">${p.toUpperCase()}</span> VS <span style="color:${getColor(c)}">${c.toUpperCase()}</span><br>${r}`;
+        }
+        function getColor(m) {
+            if(m==='rock') return '#FF4444';
+            if(m==='paper') return '#FFDD00';
+            return '#00D4FF';
+        }
+
+        // Clicker
+        let cS=0, cA=false, cTimer;
+        function initClick(){ cS=0; cA=false; document.getElementById('cTime').innerText="10"; document.getElementById('cScore').innerText="0"; }
+        document.getElementById('cBtn').onclick = () => {
+            if(!cA && document.getElementById('cTime').innerText==="10"){
+                cA=true; let t=10;
+                cTimer = setInterval(()=>{
+                    t--; document.getElementById('cTime').innerText=t;
+                    if(t<=0){ clearInterval(cTimer); cA=false; document.getElementById('cRes').innerHTML="MAX VOLTAGE: "+cS; }
+                },1000);
+            }
+            if(cA){ 
+                cS++; document.getElementById('cScore').innerText=cS; 
+                // Flash effect removed to keep background style
+            }
+        };
+    </script>
+</body>
+</html>
