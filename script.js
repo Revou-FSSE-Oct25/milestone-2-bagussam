@@ -59,6 +59,8 @@ function initGuess(){
     gAtt = 5; 
     document.getElementById('gRes').innerText = "Attempts: 5"; 
     document.getElementById('gIn').value = "";
+    document.getElementById('gBtn').disabled = false;
+    document.getElementById('gRes').style.color = "#00D4FF";
 }
 
 document.getElementById('gBtn').addEventListener('click', () => {
