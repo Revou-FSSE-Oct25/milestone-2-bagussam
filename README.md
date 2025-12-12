@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="center">🎮✨ ARCADEFUN ✨🎮</h1>
 <h3 align="center">A Next-Gen Futuristic Browser Arcade by RevoFun HQ</h3>
 
@@ -93,3 +94,6 @@ Play it anywhere — desktop, tablet, smartphone.
 ## 🔗 **How to Run the Arcade**
 
 git clone https://github.com/Revou-FSSE-Oct25/milestone-2-bagussam.git
+=======
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/PAiQDgnZ)
+>>>>>>> 305bba7932ba1b5378ebe8870bd6059fb5a4d5ba
