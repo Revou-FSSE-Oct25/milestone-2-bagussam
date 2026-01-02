@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArcadeFun | by RevoFun Indonesia</title>
+    <title>ArcadeFun | by RevoFun HQ</title>
     <style>
         /* --- GLOBAL VARIABLES --- */
         :root {
@@ -63,6 +63,7 @@
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 1px;
+            cursor: pointer;
         }
         .nav-links li a:hover { color: var(--fun-yellow); text-shadow: 0 0 10px var(--fun-yellow); }
 
@@ -155,7 +156,9 @@
         .hq-logo-big {
             font-size: 10rem; display: inline-block;
             background: linear-gradient(135deg, var(--fun-pink), var(--fun-yellow));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 0 30px var(--fun-pink)); margin-bottom: 0; line-height: 1;
         }
         @keyframes pulse-glow {
@@ -206,6 +209,12 @@
             border: 2px solid #444; color: white; border-radius: 10px; font-family: inherit; font-size: 1rem; transition: 0.3s;
         }
         .contact-input:focus { outline: none; border-color: var(--fun-pink); background: rgba(0,0,0,0.8); box-shadow: 0 0 20px rgba(255, 0, 85, 0.3); }
+        
+        /* Fixed textarea resize */
+        textarea.contact-input {
+            resize: vertical;
+            min-height: 100px;
+        }
 
         /* --- UPDATED GAME CONSOLE --- */
         .game-console-box {
@@ -372,10 +381,10 @@
     <nav>
         <div class="logo">ArcadeFun<span>.</span></div>
         <ul class="nav-links">
-            <li><a href="#" onclick="showSection('home-view')">Home</a></li>
-            <li><a href="#" onclick="showSection('about-view')">About</a></li>
-            <li><a href="#" onclick="showSection('games-view')">Games</a></li>
-            <li><a href="#" onclick="showSection('contact-view')">Contact</a></li>
+            <li><a href="#" class="nav-btn" data-view="home-view">Home</a></li>
+            <li><a href="#" class="nav-btn" data-view="about-view">About</a></li>
+            <li><a href="#" class="nav-btn" data-view="games-view">Games</a></li>
+            <li><a href="#" class="nav-btn" data-view="contact-view">Contact</a></li>
         </ul>
     </nav>
 
@@ -386,7 +395,7 @@
             <p style="font-size: 1.5rem; color: #eee; margin-bottom: 30px; font-weight: 500;">
                 Next Gen Browser Arcade. Instant Fun. No Downloads.
             </p>
-            <button class="btn-main" onclick="showSection('games-view')">Start Playing</button>
+            <button class="btn-main" id="btn-hero-start">Start Playing</button>
         </div>
     </div>
 
@@ -420,17 +429,17 @@
                 <div class="game-card">
                     <h3>Number Guessing</h3>
                     <p style="color:#aaa">Hack the mainframe.</p>
-                    <button class="btn-play" onclick="loadGame('guessing')">LOAD GAME</button>
+                    <button class="btn-play" data-game="guessing">LOAD GAME</button>
                 </div>
                 <div class="game-card">
                     <h3>Rock Paper Scissors</h3>
                     <p style="color:#aaa">The ultimate arena.</p>
-                    <button class="btn-play" onclick="loadGame('rps')">LOAD GAME</button>
+                    <button class="btn-play" data-game="rps">LOAD GAME</button>
                 </div>
                 <div class="game-card">
                     <h3>Clicker Blitz</h3>
                     <p style="color:#aaa">High voltage speed.</p>
-                    <button class="btn-play" onclick="loadGame('clicker')">LOAD GAME</button>
+                    <button class="btn-play" data-game="clicker">LOAD GAME</button>
                 </div>
             </div>
         </div>
@@ -441,9 +450,12 @@
         <div class="contact-box-centered">
             <h2>Get In Touch</h2>
             <p style="color: #ccc; margin-bottom: 30px;">Send a signal to the mothership.</p>
+            
             <input type="text" id="cName" class="contact-input" placeholder="Codename">
-            <input type="text" id="cMsg" class="contact-input" placeholder="Transmission Message">
-            <button class="btn-main" style="width: 100%; margin-top: 0;" onclick="sendMsg()">Transmit</button>
+            <input type="email" id="cEmail" class="contact-input" placeholder="Email Address">
+            <textarea id="cMsg" class="contact-input" placeholder="Transmission Message" rows="4"></textarea>
+            
+            <button class="btn-main" id="btn-transmit" style="width: 100%; margin-top: 0;">Transmit</button>
             <div id="msgFeedback" style="margin-top: 15px; font-weight: bold; color: var(--fun-yellow);"></div>
         </div>
     </div>
@@ -451,7 +463,7 @@
     <!-- GAME CONSOLE -->
     <div id="active-game-view" class="section-view hidden" style="background: black;">
         <div class="container">
-            <button onclick="showSection('games-view')" style="background:#333; color:white; border:none; padding:10px 20px; border-radius:5px; margin-bottom:20px; cursor:pointer;">&larr; EJECT CARTRIDGE</button>
+            <button id="btn-eject" style="background:#333; color:white; border:none; padding:10px 20px; border-radius:5px; margin-bottom:20px; cursor:pointer;">&larr; EJECT CARTRIDGE</button>
             
             <div class="game-console-box">
                 <!-- GUESSING (Cyber Vault) -->
@@ -477,9 +489,9 @@
                 <div id="game-rps" class="game-wrapper hidden">
                     <h2>BATTLE ARENA</h2>
                     <div class="rps-arena">
-                        <button class="rps-btn rock" onclick="playRPS('rock')">✊</button>
-                        <button class="rps-btn paper" onclick="playRPS('paper')">✋</button>
-                        <button class="rps-btn scissors" onclick="playRPS('scissors')">✌️</button>
+                        <button class="rps-btn" data-move="rock">✊</button>
+                        <button class="rps-btn" data-move="paper">✋</button>
+                        <button class="rps-btn" data-move="scissors">✌️</button>
                     </div>
                     <div id="rRes" class="vs-text">CHOOSE FIGHTER</div>
                 </div>
@@ -500,82 +512,7 @@
         <p>&copy; 2025 RevoFun HQ. Surabaya.</p>
     </footer>
 
-    <script>
-        // --- NAV & ROUTING ---
-        function showSection(id) {
-            document.querySelectorAll('.section-view').forEach(el => el.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
-            window.scrollTo(0,0);
-        }
-
-        function loadGame(game) {
-            document.getElementById('loader-overlay').classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('loader-overlay').classList.add('hidden');
-                showSection('active-game-view');
-                document.querySelectorAll('.game-wrapper').forEach(el => el.classList.add('hidden'));
-                document.getElementById('game-'+game).classList.remove('hidden');
-                if(game==='guessing') initGuess();
-                if(game==='rps') initRPS();
-                if(game==='clicker') initClick();
-            }, 1000);
-        }
-
-        function sendMsg() {
-            let n = document.getElementById('cName').value;
-            if(n) document.getElementById('msgFeedback').innerText = "Signal Received, " + n + "!";
-            else document.getElementById('msgFeedback').innerText = "Identify yourself!";
-        }
-
-        // --- GAME LOGIC ---
-        // Guessing
-        let gT, gAtt;
-        function initGuess(){ 
-            gT=Math.floor(Math.random()*100)+1; gAtt=5; 
-            document.getElementById('gRes').innerText="Attempts: 5"; 
-            document.getElementById('gIn').value = "";
-        }
-        document.getElementById('gBtn').onclick = () => {
-            let v = Number(document.getElementById('gIn').value);
-            gAtt--;
-            if(v===gT) document.getElementById('gRes').innerText="ACCESS GRANTED";
-            else if(gAtt<=0) document.getElementById('gRes').innerText="SYSTEM LOCKDOWN: "+gT;
-            else document.getElementById('gRes').innerText = (v>gT?"TOO HIGH":"TOO LOW") + " | " + gAtt;
-        };
-
-        // RPS
-        function initRPS(){ document.getElementById('rRes').innerText="CHOOSE FIGHTER"; }
-        function playRPS(p){
-            let c=['rock','paper','scissors'][Math.floor(Math.random()*3)];
-            let r="DRAW";
-            if((p=='rock'&&c=='scissors')||(p=='paper'&&c=='rock')||(p=='scissors'&&c=='paper')) r="YOU WIN";
-            else if(p!==c) r="YOU LOSE";
-            
-            // Visual feedback
-            document.getElementById('rRes').innerHTML = `<span style="color:${getColor(p)}">${p.toUpperCase()}</span> VS <span style="color:${getColor(c)}">${c.toUpperCase()}</span><br>${r}`;
-        }
-        function getColor(m) {
-            if(m==='rock') return '#FF4444';
-            if(m==='paper') return '#FFDD00';
-            return '#00D4FF';
-        }
-
-        // Clicker
-        let cS=0, cA=false, cTimer;
-        function initClick(){ cS=0; cA=false; document.getElementById('cTime').innerText="10"; document.getElementById('cScore').innerText="0"; }
-        document.getElementById('cBtn').onclick = () => {
-            if(!cA && document.getElementById('cTime').innerText==="10"){
-                cA=true; let t=10;
-                cTimer = setInterval(()=>{
-                    t--; document.getElementById('cTime').innerText=t;
-                    if(t<=0){ clearInterval(cTimer); cA=false; document.getElementById('cRes').innerHTML="MAX VOLTAGE: "+cS; }
-                },1000);
-            }
-            if(cA){ 
-                cS++; document.getElementById('cScore').innerText=cS; 
-                // Flash effect removed to keep background style
-            }
-        };
-    </script>
+    <!-- LINK TO EXTERNAL BACKEND SCRIPT -->
+    <script src="script.js"></script>
 </body>
 </html>

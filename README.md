@@ -1,99 +1,116 @@
-<<<<<<< HEAD
 <h1 align="center">🎮✨ ARCADEFUN ✨🎮</h1>
 <h3 align="center">A Next-Gen Futuristic Browser Arcade by RevoFun HQ</h3>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Mode-Futuristic%20Arcade-7F00FF?style=for-the-badge">
-  <img src="https://img.shields.io/badge/Tech-Vanilla%20JS-blue?style=for-the-badge">
-  <img src="https://img.shields.io/badge/SPA-Enabled-green?style=for-the-badge">
+<img src="https://img.shields.io/badge/Mode-Futuristic%20Arcade-7F00FF?style=for-the-badge">
+<img src="https://img.shields.io/badge/Tech-Vanilla%20JS-blue?style=for-the-badge">
+<img src="https://img.shields.io/badge/SPA-Enabled-green?style=for-the-badge">
 </p>
 
----
+🌌 Welcome to the Future of Boredom
 
-## 🌌 **Welcome to the Future of Boredom**
+ArcadeFun is a browser-based arcade platform blending cyber aesthetics,
 
-**ArcadeFun** is a browser-based arcade platform blending **cyber aesthetics**,  
-**interactive UI**, and **retro-futuristic inspiration** into a fully responsive  
-**Single Page Application (SPA)** experience.  
+interactive UI, and retro-futuristic inspiration into a fully responsive
 
-Built with **100% vanilla HTML, CSS, and JavaScript**—no framework, no BS…  
-just pure code powering a digital playground.
+Single Page Application (SPA) experience.
 
----
+Built with 100% vanilla HTML, Internal CSS, and External JavaScript—organized for performance.
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Status-Online-purple?style=for-the-badge">
+<img src="https://img.shields.io/badge/Status-Online-purple?style=for-the-badge">
 </div>
 
----
+🚀 Project Overview
 
-## 🚀 **Project Overview**
-> **Concept:** *"Level Up Your Boredom"*  
-> **Developer:** RevoFun HQ – Surabaya  
-> **Theme:** Cyberpunk Neon + Retro Console  
-> **Architecture:** SPA using class-based view toggling  
+Concept: "Level Up Your Boredom" > Developer: RevoFun HQ – Surabaya
 
-Navigate seamlessly between a company landing page and a virtual console —  
+Theme: Cyberpunk Neon + Retro Console
+
+Architecture: SPA using class-based view toggling
+
+Navigate seamlessly between a company landing page and a virtual console —
+
 all within one page, zero reloads, maximum immersion.
 
----
+⚡ Game Cartridges Installed
 
-## ⚡ **Game Cartridges Installed**
+🧩 1. Number Guessing — CYBER VAULT
 
-### 🧩 1. **Number Guessing — `CYBER VAULT`**
-- Hack the mainframe (guess 1–100)  
-- Matrix rain background  
-- System lock animations  
-- Terminal-style UI
+Hack the mainframe (guess 1–100)
 
-### 🥊 2. **Rock Paper Scissors — `NEON ARENA`**
-- Classic duel vs CPU  
-- Retrowave neon battlefield  
-- Electrified glowing buttons  
-- VS intro animation  
+Matrix rain background
 
-### 🔥 3. **Clicker Blitz — `HIGH VOLTAGE`**
-- Generate maximum voltage in 10 seconds  
-- Industrial hazard theme  
-- Shockwave button animations  
-- High-intensity visual feedback  
+System lock animations
 
----
+Terminal-style UI
 
-## 🧬 **Core Features (Futuristic Engine)**
+🥊 2. Rock Paper Scissors — NEON ARENA
 
-### 🕹 Virtual Console Wrapper  
-Metallic frame, LED indicators, ventilation design — feels like a real machine.
+Classic duel vs CPU
 
-### 📀 Cartridge Loading Simulation  
-Animated overlay simulating cartridge insertion delay.
+Retrowave neon battlefield
 
-### 🔮 Immersive UI Tech  
-- Glassmorphism overlays  
-- Floating/floating holographic elements  
-- Scan-line display filters  
-- Screen shake + flash feedback  
-- Retrowave neon gradients  
+Electrified glowing buttons
 
-### 📱 Full Responsiveness  
-Play it anywhere — desktop, tablet, smartphone.
+VS intro animation
 
----
+🔥 3. Clicker Blitz — HIGH VOLTAGE
 
-## 🛠 **Technology Stack**
+Generate maximum voltage in 10 seconds
 
-| Tech | Role |
-|------|------|
-| **HTML5** | Semantic structure |
-| **CSS3** | Grid, Flexbox, Animations, Backdrop Filter |
-| **JavaScript (ES6)** | DOM handling, events, logic loops |
-| **SPA Architecture** | Class toggling between views |
+Industrial hazard theme
 
----
+Shockwave button animations
 
-## 🔗 **How to Run the Arcade**
+High-intensity visual feedback
 
-git clone https://github.com/Revou-FSSE-Oct25/milestone-2-bagussam.git
-=======
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/PAiQDgnZ)
->>>>>>> 305bba7932ba1b5378ebe8870bd6059fb5a4d5ba
+📂 File Structure
+
+File
+
+Description
+
+index.html
+
+Core structure and Internal CSS styles for single-file styling convenience.
+
+script.js
+
+Backend game modules, logic loops, and DOM event handling.
+
+README.md
+
+Documentation and usage guide.
+
+🛠 Technology Stack
+
+Tech
+
+Role
+
+HTML5
+
+Semantic structure & Internal CSS
+
+CSS3
+
+Grid, Flexbox, Animations, Backdrop Filter (Inside HTML)
+
+JavaScript (ES6)
+
+External file for cleaner logic separation
+
+SPA Architecture
+
+Class toggling between views
+
+🔗 How to Run the Arcade
+
+Clone or download the repository.
+
+Ensure index.html and script.js are in the same folder.
+
+Open index.html in your browser.
+
+git clone [https://github.com/Revou-FSSE-Oct25/milestone-2-bagussam.git](https://github.com/Revou-FSSE-Oct25/milestone-2-bagussam.git)
