@@ -111,6 +111,6 @@ Clone or download the repository.
 
 Ensure index.html and script.js are in the same folder.
 
-Open index.html in your browser or open https://bagussam.github.io/milestone-2-bagussam/
+Open index.html in your browser or open https://revou-fsse-oct25.github.io/milestone-2-bagussam
 
-git clone [https://github.com/Revou-FSSE-Oct25/milestone-2-bagussam.git](https://github.com/Revou-FSSE-Oct25/milestone-2-bagussam.git)
+git clone https://github.com/Revou-FSSE-Oct25/milestone-2-bagussam.git
